@@ -1,0 +1,91 @@
+@import url("https://cdn.jsdelivr.net/gh/thecoolagency/thecoolcdn@v0.3.0/css/fix.tca.css");
+@import url("https://cdn.jsdelivr.net/gh/thecoolagency/thecoolcdn@v0.3.0/css/animations.tca.css");
+
+@font-face {
+    font-family: 'press_start_2pregular';
+    src: url('../public/fonts/pressstart2p-webfont.woff2') format('woff2'),
+         url('../public/fonts/pressstart2p-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'karmatic_arcaderegular';
+    src: url('../public/fonts/karmatic-arcade-webfont.woff2') format('woff2'),
+         url('../public/fonts/karmatic-arcade-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: calc(1 * 62.5%);
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100%;
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0;
+    line-height: calc(1 + 0.8 / 1);
+    color: #00fa00;
+}
+
+@media screen and (min-width: 750px) {
+    body {
+        font-size: 1.6rem;
+    }
+}
+
+p {
+    font-size: 1.15rem;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'press_start_2pregular', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #000000;
+}
+
+h1, h1 a {
+  font-family: 'karmatic_arcaderegular', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+    `box-sizing: border-box;
+}
+
+hr {
+    width: 100px;
+    height: 1px;
+    border: none;
+    background: #0af900;
+}
+
+main {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.details {
+    /*text-align: center;*/
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
