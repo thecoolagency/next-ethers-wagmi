@@ -6,19 +6,6 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import dynamic from 'next/dynamic'
 
-const Chain = dynamic(() => import("../components/Chain"), {
-    ssr: false,
-});
-const SToken = dynamic(() => import("../components/Token"), {
-    ssr: false,
-});
-const TokenBalance = dynamic(() => import("../components/TokenBalance"), {
-    ssr: false,
-});
-const TokenTransfer = dynamic(() => import("../components/TokenTransfer"), {
-    ssr: false,
-});
-
 const Token: NextPage = () => {
 
     return (
@@ -42,12 +29,16 @@ const Token: NextPage = () => {
 
                 <div className="content">
 
+                <div className="page-content">
+
                     <h2 className="h2">ETHOS</h2>
                     <p className="description">A Community of Creatives,<br /> Developers and Entrepreneurs.</p>
                     <h2 className="h2">PATHOS</h2>
                     <p className="description">Focused on sustainability.<br /> Improving the lives of our community<br /> and the world.</p>
                     <h2 className="h2">LOGOS</h2>
                     <p className="description">Leveraging web3 technology.</p>
+
+                </div>
 
                     <div className="navigation center">
                         <Link href="/">

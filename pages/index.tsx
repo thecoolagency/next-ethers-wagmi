@@ -27,6 +27,8 @@ const Home: NextPage = () => {
 
                 <div className="content">
 
+                <div className="page-content">
+
                     <div className="grid">
 
                         <div className="card">
@@ -38,11 +40,13 @@ const Home: NextPage = () => {
                             </Link>
                         </div>
 
-                        <a href="https://opensea.io/" className="card" target="_blank">
-                            <h2>Skid NFT's &rarr;</h2>
-                            <p>Learn about our upcoming NFT's.</p>
+                        <a href="https://opensea.io/" className="card" target="_blank" rel="noreferrer noopener">
+                            <h2>Skid NFT&apos;s &rarr;</h2>
+                            <p>Learn about our upcoming NFT&apos;s.</p>
                         </a>
 
+                    </div>
+                    
                     </div>
 
                     <div className="navigation center">

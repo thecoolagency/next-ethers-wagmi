@@ -6,40 +6,40 @@ const SToken = () => {
 
     const { chain } = useNetwork();
 
-    let currentNetwork=chain?.name;
-    let tokAddress;
-    let etherscanURL;
-    let blockExplorer;
-    let RPCProvider;
+    let currentNetwork:string = chain?.name;
+    let tokAddress:string;
+    let etherscanURL:string;
+    let blockExplorer:string;
+    let RPCProvider:string;
 
     const getNetworkConf = (currentNetwork) => {
         switch (chain?.name) {
             case "Arbitrum Rinkeby":
-                tokAddress = process.env.REACT_APP_ARBI_RINKEBY_TOKEN_ADDRESS;
+                tokAddress = "0x853d95e5261bedc228a07207f1a5ad455f649094";
                 etherscanURL = process.env.REACT_APP_ARBI_RINKEBY_ETHERSCAN_URL;
                 blockExplorer = process.env.REACT_APP_ARBI_RINKEBY_BLOCK_EXPLORER_URL;
                 RPCProvider = process.env.REACT_APP_ARBI_RINKEBY_RPC_PROVIDER_URL;
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Optimism Kovan":
-                tokAddress = process.env.REACT_APP_OPTI_KOVAN_TOKEN_ADDRESS;
+                tokAddress = "0x853d95e5261bedc228a07207f1a5ad455f649094";
                 etherscanURL = process.env.REACT_APP_OPTI_KOVAN_ETHERSCAN_URL;
                 blockExplorer = process.env.REACT_APP_OPTI_KOVAN_BLOCK_EXPLORER_URL;
                 RPCProvider = process.env.REACT_APP_OPTI_KOVAN_RPC_PROVIDER_URL;
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Polygon Mumbai":
-                tokAddress = process.env.REACT_APP_MUMBAI_TOKEN_ADDRESS;
+                tokAddress = "0x853d95e5261bedc228a07207f1a5ad455f649094";
                 etherscanURL = process.env.REACT_APP_MUMBAI_ETHERSCAN_URL;
                 blockExplorer = process.env.REACT_APP_MUMBAI_BLOCK_EXPLORER_URL;
                 RPCProvider = process.env.REACT_APP_MUMBAI_RPC_PROVIDER_URL;
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Rinkeby":
-                tokAddress = process.env.REACT_APP_RINKEBY_TOKEN_ADDRESS;
+                tokAddress = "0x2244132b7af02525b8d7dcef48a51bac23f44cd7";
                 etherscanURL = process.env.REACT_APP_RINKEBY_ETHERSCAN_URL;
                 blockExplorer = process.env.REACT_APP_RINKEBY_BLOCK_EXPLORER_URL;
                 RPCProvider = process.env.REACT_APP_RINKEBY_RPC_PROVIDER_URL;
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Goerli":
-                tokAddress = process.env.REACT_APP_GOERLI_TOKEN_ADDRESS;
+                tokAddress = "0x2d9e51eee9a83c45c251a768bab3ec62bbd20c4a";
                 etherscanURL = process.env.REACT_APP_GOERLI_ETHERSCAN_URL;
                 blockExplorer = process.env.REACT_APP_GOERLI_BLOCK_EXPLORER_URL;
                 RPCProvider = process.env.REACT_APP_GOERLI_RPC_PROVIDER_URL;
@@ -71,10 +71,11 @@ const SToken = () => {
             if (wasAdded) {
                 // noice    
             } else {
-                // not noice
+                alert("what?")
             }
         } catch (error) {
             console.log(error);
+            alert("Error code: " + error.code + " \nMessage: " + error.message)
         }
     }
 
@@ -84,23 +85,23 @@ const SToken = () => {
         suspense: true
     })
 
-    if (isLoading) return <div>Fetching token…</div>
-    if (isError) return <div>Error fetching token</div>
+    if (isLoading) return <div className="details"><p>Fetching token…</p></div>
+    if (isError) return <div className="details"><p>Error fetching token</p></div>
 
     return (
         <div className="details">
 
         <p>
-            Chain ID: {chain?.id}<br /> 
-            Name: {chain?.name}<br /> 
-            Network: {chain?.network}<br /> 
-            Symbol: {data?.symbol}<br /> 
-            Supply: {data?.totalSupply.formatted}<br />
-            Address: <a href={etherscanURL} target="_blank"> {String(data?.address).substring(0, 3) + "..." + String(data?.address).substring(38)}</a>
+            Chain ID: {chain?.id || "error"}<br /> 
+            Name: {chain?.name || "error"}<br /> 
+            Network: {chain?.network || "error"}<br /> 
+            Symbol: {data?.symbol || "error"}<br /> 
+            Supply: {data?.totalSupply.formatted || "error"}<br />
+            Address: <a href={etherscanURL} target="_blank" rel="noreferrer nooopener"> {String(data?.address).substring(0, 3) + "..." + String(data?.address).substring(38)}</a>
         </p>
 
         <button onClick={addToken} className="button--primary fox">
-            ADD TO <Image src="/vectors/metamask.svg" height={20} width={20} />
+            ADD TO <Image src="/vectors/metamask.svg" height={20} width={20} alt="metamask" />
         </button>
 
         </div>

@@ -40,16 +40,14 @@ const Token: NextPage = () => {
                     <Link href="/">SkidCoin</Link>
                 </h1>
 
-                <hr />
+                <div className="page-content">
 
-                <Chain />
-                <SToken />
-                <TokenBalance />
-                <TokenTransfer />
+                    <Chain />
+                    <SToken />
+                    <TokenBalance />
+                    <TokenTransfer />
 
-                <br />
-                <hr />
-                <br />
+                </div>
 
                 <div className="navigation center">
                     <Link href="/">
