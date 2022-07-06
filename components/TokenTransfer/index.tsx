@@ -6,7 +6,6 @@ import TokenFactory from "../../contracts/SkidCoin.json";
 import Loader from '../../public/vectors/loader.svg';
 import Etherscan from '../../public/vectors/etherscan.svg';
 import ethereum_address from 'ethereum-address';
-// var ethereum_address = require('ethereum-address');
 
 export default function TokenTransfer(): JSX.Element {
 
