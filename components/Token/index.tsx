@@ -1,4 +1,4 @@
-import {useState, useEffect, startTransition, useTransition} from 'react';
+import { useState, useEffect, startTransition, useTransition } from 'react';
 import { useToken, useNetwork, useAccount } from 'wagmi'
 import Image from 'next/image';
 import Etherscan from '../../public/vectors/metamask.svg';
@@ -7,7 +7,7 @@ const SToken = () => {
 
     const { chain } = useNetwork();
     const { address: accountAddress, isConnected, isDisconnected, status: userStatus } = useAccount();
-    const [isPending, startTransition] = useTransition();
+    const [ isPending, startTransition ] = useTransition();
 
     let currentNetwork:string = chain?.name!;
     let tokAddress:string = "0x853d95e5261bedc228a07207f1a5ad455f649094";
@@ -58,8 +58,7 @@ const SToken = () => {
 
     let conf = getNetworkConf(currentNetwork)!
 
-    console.log("conf: \n" + conf.tokAddress!)
-    // console.log("Bandz: \n" + tokAddress)
+    // console.log("conf: \n" + conf.tokAddress!)
 
     // metamask only (desktop and mobile)
     async function addToken(): Promise<void> {
@@ -82,8 +81,6 @@ const SToken = () => {
             });
             if (wasAdded) {
                 // noice    
-            } else {
-                alert("what?")
             }
         } catch (error) {
             if (error instanceof Error) {
@@ -102,30 +99,30 @@ const SToken = () => {
     })
 
     return (
-<>
-        {isPending && <div className="details"><p>Fetching token…</p></div>}
-        {isError && <div className="details"><p>Error fetching token</p></div>}
+        <>
+            {isPending && <div className="details"><p>Fetching token…</p></div>}
+            {isError && <div className="details"><p>Error fetching token</p></div>}
 
-        {!isPending && 
+            {!isPending && 
 
-        <div className="details">
+                <div className="details">
 
-        <p>
-            Chain ID: {chain?.id || "error"}<br /> 
-            Name: {chain?.name || "error"}<br /> 
-            Network: {chain?.network || "error"}<br /> 
-            Symbol: {data?.symbol || "error"}<br /> 
-            Supply: {data?.totalSupply.formatted || "error"}<br />
-            Address: <a href={conf.etherscanURL} target="_blank" rel="noreferrer nooopener"> {String(conf.tokAddress).substring(0, 3) + "..." + String(conf.tokAddress).substring(38)}</a>
-        </p>
+                <p>
+                    Chain ID: {chain?.id || "error"}<br /> 
+                    Name: {chain?.name || "error"}<br /> 
+                    Network: {chain?.network || "error"}<br /> 
+                    Symbol: {data?.symbol || "error"}<br /> 
+                    Supply: {data?.totalSupply.formatted || "error"}<br />
+                    Address: <a href={conf.etherscanURL} target="_blank" rel="noreferrer nooopener"> {String(conf.tokAddress).substring(0, 3) + "..." + String(conf.tokAddress).substring(38)}</a>
+                </p>
 
-        <button onClick={addToken} className="button--primary fox">
-            ADD TO <Image src="/vectors/metamask.svg" height={20} width={20} alt="metamask" />
-        </button>
+                <button onClick={addToken} className="button--primary fox">
+                    ADD TO <Image src="/vectors/metamask.svg" height={20} width={20} alt="metamask" />
+                </button>
 
-        </div>
-        }
-</>
+                </div>
+            }
+        </>
     )
 };
 

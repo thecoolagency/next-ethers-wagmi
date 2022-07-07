@@ -69,10 +69,10 @@
     .title {
         margin: 2rem 0;
         line-height: 1;
-        font-size: 3.8rem;
+        font-size: 2.8rem;
         position: absolute;
         top: 0;
-        left: 1rem;
+        left: 2rem;
         transform: unset;
     }
 }
@@ -133,7 +133,7 @@
     height: -webkit-fill-available;
     width: 45%;
     min-height: 145px;
-    max-height: 200px;
+    max-height: 280px;
 }
 
 .button {
@@ -375,3 +375,12 @@
         margin-bottom: 15rem;
     }
 }
+
+#rk_connect_title {
+    font-size: 1.35rem!important;
+}
+
+[data-rk] h2 span {
+    font-size: 1rem!important;
+}
+
