@@ -959,10 +959,10 @@
   resolved "https://registry.yarnpkg.com/@vanilla-extract/sprinkles/-/sprinkles-1.4.1.tgz#8c8703ddedaac355c1187db909119816c0fc771c"
   integrity sha512-aW6CfMMToX4a+baLuVxwcT0FSACjX3xrNt8wdi/3LLRlLAfhyue8OK7kJxhcYNZfydBeWTP59aRy8p5FUTIeew==
 
-"@wagmi/core@^0.4.6":
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.4.6.tgz#b21ff905c60f866752ea3208a1942e24f73680eb"
-  integrity sha512-g6d5t41eCBHIeLjdlBTlydcfyRPxgD3N6UD172CkdXgm1enF8u3mwdG2dOMLv0YapBCiptVQOLItVzf6YsdDnQ==
+"@wagmi/core@^0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.4.7.tgz#14fdc8f44f6b07de07e863ec6911b739b89451a3"
+  integrity sha512-YpD9bxE22qV1vhCKDy18Yq5B6ArRRH15XpMnZhB/1Hdbk9nLK1heSJ1HoCetn1uCxrdUByTAzlmuxL3FbeXM5A==
   dependencies:
     eventemitter3 "^4.0.7"
     zustand "^4.0.0-rc.1"
@@ -1799,9 +1799,9 @@ eip1193-provider@1.0.1:
     "@json-rpc-tools/provider" "^1.5.5"
 
 electron-to-chromium@^1.4.172:
-  version "1.4.181"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.181.tgz#4568379c1493ee95342b13bb2279cf4d207f2c3a"
-  integrity sha512-T6JzLj+9J6CdPgI7jXLcq5Ao2qyFhEBfWFUExxRRVFdVYAU86SfcLX3Zw6p1HzvngR+M8C4q6eDkQ5flEr1RnA==
+  version "1.4.182"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.182.tgz#5d59214ebfe90b36f23e81cd226a42732cd8c677"
+  integrity sha512-OpEjTADzGoXABjqobGhpy0D2YsTncAax7IkER68ycc4adaq0dqEG9//9aenKPy7BGA90bqQdLac0dPp6uMkcSg==
 
 elliptic@6.5.4, elliptic@^6.5.2, elliptic@^6.5.4:
   version "6.5.4"
@@ -4000,12 +4000,12 @@ v8-compile-cache@^2.0.3:
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
 wagmi@^0.5.3:
-  version "0.5.8"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.5.8.tgz#3241ceddc58f1e5ddcf05efb986161b802698f73"
-  integrity sha512-o8phCqhhfkHL5BfF3yzvw3VszTHptPApFXm31wTlGvDO0oRirM7Q+Wss92VmwOfyZf+FJ7ECCstb9RvV2pF/zw==
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.5.9.tgz#7e1c3eaa4b5cc5680072c66b59622c2cb5a7bfff"
+  integrity sha512-B9wL+1J3J/9sVqj3DMJtTYuBSx0QdFFu6QwPlw2zVvB995lWivG2vABTYwoWuyUbXwcVvSVHEgPyFBRx5zoPqw==
   dependencies:
     "@coinbase/wallet-sdk" "^3.3.0"
-    "@wagmi/core" "^0.4.6"
+    "@wagmi/core" "^0.4.7"
     "@walletconnect/ethereum-provider" "^1.7.8"
     react-query "^4.0.0-beta.23"
     use-sync-external-store "^1.1.0"

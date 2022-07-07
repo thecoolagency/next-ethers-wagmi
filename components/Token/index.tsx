@@ -101,11 +101,12 @@ const SToken = () => {
     return (
         <>
             {isPending && <div className="details"><p>Fetching token…</p></div>}
-            {isError && <div className="details"><p>Error fetching token</p></div>}
 
             {!isPending && 
 
                 <div className="details">
+                
+                {isError && <div className="details"><p>Error fetching token</p></div>}
 
                 <p>
                     Chain ID: {chain?.id || "error"}<br /> 
