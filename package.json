@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^0.4.1",
+    "dotenv": "^16.0.1",
     "ethereum-address": "^0.0.4",
     "ethers": "^5.0.0",
     "framer-motion": "^6.3.16",

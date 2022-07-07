@@ -44,6 +44,12 @@ const SToken = () => {
                 blockExplorer = "https://goerli.etherscan.io/";
                 RPCProvider = "https://goerli.infura.io/v3/59b59e23bb7c44d799b5db4a1b83e4ee";
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
+            default:
+                tokAddress = "e3105f2100bd48708f77e21b1886477e";
+                etherscanURL = "https://etherscan.io/token/" + tokAddress;
+                blockExplorer = "https://etherscan.io/";
+                RPCProvider = "https://mainnet.infura.io/v3/59b59e23bb7c44d799b5db4a1b83e4ee";
+                return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
         }
     }
 
