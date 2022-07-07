@@ -1,11 +1,12 @@
-import {useState, useEffect, startTransition, useTransition} from 'react';a
-import { useToken, useNetwork } from 'wagmi'
+import {useState, useEffect, startTransition, useTransition} from 'react';
+import { useToken, useNetwork, useAccount } from 'wagmi'
 import Image from 'next/image';
 import Etherscan from '../../public/vectors/metamask.svg';
 
 const SToken = () => {
 
-    const { chain, isConnected } = useNetwork();
+    const { chain } = useNetwork();
+    const { address: accountAddress, isConnected, isDisconnected, status: userStatus } = useAccount();
     const [isPending, startTransition] = useTransition();
 
     let currentNetwork:string = chain?.name!;
