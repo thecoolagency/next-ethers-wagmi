@@ -7,7 +7,7 @@ const SToken = () => {
     const { chain } = useNetwork();
 
     let currentNetwork:string = chain?.name!;
-    let tokAddress:string;
+    let tokAddress:string = "0x853d95e5261bedc228a07207f1a5ad455f649094";
     let etherscanURL:string;
     let blockExplorer:string;
     let RPCProvider:string;
