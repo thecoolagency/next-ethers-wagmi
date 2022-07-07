@@ -15,8 +15,10 @@ const { chains, provider, webSocketProvider } = configureChains(
         chain.arbitrumRinkeby,
         chain.polygonMumbai,
         chain.optimismKovan,
+        chain.goerli,
+        chain.rinkeby,
         ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'
-            ? [chain.goerli, chain.rinkeby]
+            ? [chain.kovan]
             : []),
     ],
     [
@@ -24,7 +26,7 @@ const { chains, provider, webSocketProvider } = configureChains(
         alchemyProvider({ alchemyId: '_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC' }),
         jsonRpcProvider({
           rpc: (chain) => ({
-            http: `https://${chain.id}.example.com`,
+            http: `https://${chain.network}.infura.io/v3/e3105f2100bd48708f77e21b1886477e`,
           }),
         }),
         publicProvider(),
