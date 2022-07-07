@@ -133,6 +133,7 @@
     height: -webkit-fill-available;
     width: 45%;
     min-height: 145px;
+    max-height: 150px;
 }
 
 .button {
