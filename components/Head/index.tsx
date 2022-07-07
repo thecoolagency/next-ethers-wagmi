@@ -1,6 +1,12 @@
 import Head from "next/head";
 
-const Title = ({ title, description, image }) => {
+type TitleProps = {
+  title: string;
+  description: string;
+  image: string;
+};
+
+const Title: React.FunctionComponent<TitleProps> = ({ title, description, image }) => {
   return (
     <Head>
 
@@ -23,7 +29,7 @@ const Title = ({ title, description, image }) => {
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=10.0, minimal-ui, viewport-fit=cover"
       />
       <meta name="theme-color" content="#000000" />
-      <link rel="icon" href="/favicon.ico" />
+      {/*<link rel="icon" href="/favicon.ico" />*/}
       <link rel="apple-touch-icon" href="apple-touch-icon.png" />
       <link rel="manifest" href="/site.webmanifest" />
 

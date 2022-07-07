@@ -5,60 +5,58 @@ import { useContractWrite, useWaitForTransaction, useSigner, useAccount, useNetw
 import TokenFactory from "../../contracts/SkidCoin.json";
 import Loader from '../../public/vectors/loader.svg';
 import Etherscan from '../../public/vectors/etherscan.svg';
-import ethereum_address from 'ethereum-address';
+// import ethereum_address from 'ethereum-address';
+var ethereum_address = require('ethereum-address');
 
 export default function TokenTransfer(): JSX.Element {
 
     const { address: accountAddress, isConnected, isDisconnected, status: userStatus } = useAccount();
     const { chain } = useNetwork();
 
-    let currentNetwork=chain?.name;
-    let tokAddress;
-    let etherscanURL;
-    let blockExplorer;
-    let RPCProvider;
+    let currentNetwork:string = chain?.name!;
+    let tokAddress:string;
+    let etherscanURL:string;
+    let blockExplorer:string;
+    let RPCProvider:string;
 
-    const getNetworkConf = (currentNetwork) => {
+    const getNetworkConf = (currentNetwork: string) => {
         switch (chain?.name) {
             case "Arbitrum Rinkeby":
-                // tokAddress = process.env.REACT_APP_ARBI_RINKEBY_TOKEN_ADDRESS;
                 tokAddress = "0x853d95e5261bedc228a07207f1a5ad455f649094";
-                etherscanURL = process.env.REACT_APP_ARBI_RINKEBY_ETHERSCAN_URL;
-                blockExplorer = process.env.REACT_APP_ARBI_RINKEBY_BLOCK_EXPLORER_URL;
-                RPCProvider = process.env.REACT_APP_ARBI_RINKEBY_RPC_PROVIDER_URL;
+                etherscanURL = "https://testnet.arbiscan.io/token/" + tokAddress;
+                blockExplorer = "https://testnet.arbiscan.io/";
+                RPCProvider = "https://arbitrum-rinkeby.infura.io/v3/e3105f2100bd48708f77e21b1886477e";
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Optimism Kovan":
-                // tokAddress = process.env.REACT_APP_OPTI_KOVAN_TOKEN_ADDRESS;
                 tokAddress = "0x853d95e5261bedc228a07207f1a5ad455f649094";
-                etherscanURL = process.env.REACT_APP_OPTI_KOVAN_ETHERSCAN_URL;
-                blockExplorer = process.env.REACT_APP_OPTI_KOVAN_BLOCK_EXPLORER_URL;
-                RPCProvider = process.env.REACT_APP_OPTI_KOVAN_RPC_PROVIDER_URL;
+                etherscanURL = "https://kovan-optimistic.etherscan.io/token/" + tokAddress;
+                blockExplorer = "https://kovan-optimistic.etherscan.io/";
+                RPCProvider = "https://optimism-goerli.infura.io/v3/e3105f2100bd48708f77e21b1886477e";
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Polygon Mumbai":
-                // tokAddress = process.env.REACT_APP_MUMBAI_TOKEN_ADDRESS;
                 tokAddress = "0x853d95e5261bedc228a07207f1a5ad455f649094";
-                etherscanURL = process.env.REACT_APP_MUMBAI_ETHERSCAN_URL;
-                blockExplorer = process.env.REACT_APP_MUMBAI_BLOCK_EXPLORER_URL;
-                RPCProvider = process.env.REACT_APP_MUMBAI_RPC_PROVIDER_URL;
+                etherscanURL = "https://mumbai.polygonscan.com/token/" + tokAddress;
+                blockExplorer = "https://mumbai.polygonscan.com/";
+                RPCProvider = "https://polygon-mumbai.infura.io/v3/e3105f2100bd48708f77e21b1886477e";
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Rinkeby":
-                // tokAddress = process.env.REACT_APP_RINKEBY_TOKEN_ADDRESS;
                 tokAddress = "0x2244132b7af02525b8d7dcef48a51bac23f44cd7";
-                etherscanURL = process.env.REACT_APP_RINKEBY_ETHERSCAN_URL;
-                blockExplorer = process.env.REACT_APP_RINKEBY_BLOCK_EXPLORER_URL;
-                RPCProvider = process.env.REACT_APP_RINKEBY_RPC_PROVIDER_URL;
+                etherscanURL = "https://rinkeby.etherscan.io/token/" + tokAddress;
+                blockExplorer = "https://rinkeby.etherscan.io/";
+                RPCProvider = "https://rinkeby.infura.io/v3/59b59e23bb7c44d799b5db4a1b83e4ee";
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
             case "Goerli":
-                // tokAddress = process.env.REACT_APP_GOERLI_TOKEN_ADDRESS;
                 tokAddress = "0x2d9e51eee9a83c45c251a768bab3ec62bbd20c4a";
-                etherscanURL = process.env.REACT_APP_GOERLI_ETHERSCAN_URL;
-                blockExplorer = process.env.REACT_APP_GOERLI_BLOCK_EXPLORER_URL;
-                RPCProvider = process.env.REACT_APP_GOERLI_RPC_PROVIDER_URL;
+                etherscanURL = "https://goerli.etherscan.io/token/" + tokAddress;
+                blockExplorer = "https://goerli.etherscan.io/";
+                RPCProvider = "https://goerli.infura.io/v3/59b59e23bb7c44d799b5db4a1b83e4ee";
                 return { tokAddress, etherscanURL, blockExplorer, RPCProvider };
         }
     }
 
-    let conf = getNetworkConf(currentNetwork)
+    let conf = getNetworkConf(currentNetwork)!
+
+    console.log("conf: \n" + conf.tokAddress!)
 
     const cbLink = "cbwallet://dapp?url=" + window.location.href;
     const mmLink = "https://metamask.app.link/dapp/" + window.location.href;
@@ -72,7 +70,7 @@ export default function TokenTransfer(): JSX.Element {
     const [txError, setTxError] = useState(null)
     const [etherscan, setEtherscan] = useState('')
     const [loadingState, setLoadingState] = useState(0)
-    const [transferStatus, setTransferStatus] = useState(null)
+    const [transferStatus, setTransferStatus] = useState(1)
 
     function writeUserData() {
         if (ethereum_address.isAddress(address)) {
@@ -87,7 +85,7 @@ export default function TokenTransfer(): JSX.Element {
 
     const { data: signer } = useSigner()
     const { data, isError, isLoading , write } = useContractWrite({
-        addressOrName: tokAddress,
+        addressOrName: conf.tokAddress,
         contractInterface: TokenFactory.abi,
         signerOrProvider: signer,
         functionName: 'transfer',
@@ -119,15 +117,21 @@ export default function TokenTransfer(): JSX.Element {
             write();
             await setDisabled(false)
         } catch (error) {
-            await console.log("Error: " + error.message);
-            if (error.code === '4001') {
-                setDisabled(false)
-                setLoadingState(1)
+            if (error instanceof Error) {
+                console.log(error)
+                alert("Error: " + error)
             } else {
-                setDisabled(false)
-                setLoadingState(1)
+                console.log("error")
             }
-            console.log(error.message + error.code)
+            // await console.log("Error: " + error.message);
+            // if (error.code === '4001') {
+            //     setDisabled(false)
+            //     setLoadingState(1)
+            // } else {
+            //     setDisabled(false)
+            //     setLoadingState(1)
+            // }
+            // console.log(error.message + error.code)
         }
     }
 
@@ -157,13 +161,13 @@ export default function TokenTransfer(): JSX.Element {
                         <input
                             className="input"
                             type="number"
-                            required="required"
+                            required={true}
                             step="100"
                             placeholder="Amount.."
                             value={amount}
                             pattern=".*\S+.*" 
                             onChange={(e) => {
-                                if (amount >= 100) {
+                                if (parseInt(amount) >= 100) {
                                     setFinalAmount(amount)
                                 }; setAmount(e.currentTarget.value)}}
                             min="100"
@@ -174,7 +178,7 @@ export default function TokenTransfer(): JSX.Element {
                         <input
                             className="input"
                             placeholder="0x01....."
-                            required="required"
+                            required={true}
                             type="text"
                             onChange={(e) => setAddress(e.currentTarget.value)}
                             disabled={disabled} />
@@ -195,7 +199,7 @@ export default function TokenTransfer(): JSX.Element {
                     <div className="results animated fadeIn">
                         <div className="details animated fadeInUp">
                             <h2>Transaction:</h2>
-                            <a href={etherscan} target="_blank" rel="noreferrer noopener" alt="etherscan link"><Image src="/vectors/etherscan.svg" height={30} width={30} alt="etherscan" /></a>
+                            <a href={conf.etherscanURL} target="_blank" rel="noreferrer noopener"><Image src="/vectors/etherscan.svg" height={30} width={30} alt="etherscan" /></a>
                         </div>
                     </div>
                 )}

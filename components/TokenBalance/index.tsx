@@ -6,10 +6,10 @@ export default function TokenBalance() {
 
     const { chain } = useNetwork();
 
-    let currentNetwork=chain?.name;
+    let currentNetwork:string = chain?.name!;
     
-    const getEndpoint = (currentNetwork) => {
-        switch (currentNetwork) {
+    const getNetworkConf = (currentNetwork: string) => {
+        switch (chain?.name) {
             case "Arbitrum Rinkeby":
                 // return process.env.REACT_APP_ARBI_RINKEBY_TOKEN_ADDRESS
                 return "0x853d95e5261bedc228a07207f1a5ad455f649094"
@@ -28,18 +28,15 @@ export default function TokenBalance() {
         }
     }
 
-    let endpoint = getEndpoint(currentNetwork)
-    console.log(endpoint)
-    console.log(currentNetwork)
-    console.log(address)
+    let conf = getNetworkConf(currentNetwork)
 
     const { data, isError, isLoading } = useBalance({
         addressOrName: address,
         formatUnits: 18,
-        token: endpoint
+        token: conf
     })
 
-    let toInt = parseInt(data?.formatted) || 0;
+    let toInt = parseInt(data?.formatted!);
 
     if (isLoading) return <div>Fetching balance…</div>
     if (isError) return <div>Error fetching balance</div>
