@@ -3,16 +3,16 @@
 
 @font-face {
     font-family: 'press_start_2pregular';
-    src: url('/public/fonts/pressstart2p-webfont.woff2') format('woff2'),
-         url('/public/fonts/pressstart2p-webfont.woff') format('woff');
+    src: url('/public/pressstart2p-webfont.woff2') format('woff2'),
+         url('/public/pressstart2p-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'karmatic_arcaderegular';
-    src: url('/public/fonts/karmatic-arcade-webfont.woff2') format('woff2'),
-         url('/public/fonts/karmatic-arcade-webfont.woff') format('woff');
+    src: url('/public/karmatic-arcade-webfont.woff2') format('woff2'),
+         url('/public/karmatic-arcade-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
