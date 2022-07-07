@@ -31,7 +31,7 @@ const Title: React.FunctionComponent<TitleProps> = ({ title, description, image 
       <meta name="theme-color" content="#000000" />
       {/*<link rel="icon" href="/favicon.ico" />*/}
       <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-      <link rel="manifest" href="/site.webmanifest" />
+      <link rel="manifest" href="/manifest.json" />
 
       <meta property="og:url" content="https://skidcoin.com/" />
       <meta property="og:type" content="website" />
