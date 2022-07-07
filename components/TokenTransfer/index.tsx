@@ -179,7 +179,7 @@ export default function TokenTransfer(): JSX.Element {
                             min="100"
                             disabled={disabled} />
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', width: '20rem' }}>
                         <p style={{ paddingBottom: '0', fontSize: '0.85rem' }}>to</p>
                         <input
                             className="input"

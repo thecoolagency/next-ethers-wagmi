@@ -194,11 +194,11 @@
 }
 
 .transfer .input[type="number"] {
-    max-width: 6.5rem;
+    max-width: 10.5rem;
 }
 
 .transfer .input[type="text"] {
-    max-width: 12rem;
+    /*max-width: 12rem;*/
 }
 
 .input:focus-visible {
@@ -376,7 +376,17 @@
     }
 }
 
-#rk_connect_title {
+@media screen and (max-width: 749px) {
+    .page-content {
+        max-height: calc(100vh - 22rem);
+        min-height: calc(100vh - 22rem);
+        overflow-y: scroll;
+        padding: 5rem 0 0;
+        margin-top: 10rem;
+    }
+}
+
+#rk_connect_title. #rk_chain_modal_title {
     font-size: 1.35rem!important;
 }
 
@@ -384,3 +394,8 @@
     font-size: 1rem!important;
 }
 
+@media screen and ( max-width: 749px ) {
+    #__next > div > div > main > div.coco > div > button:nth-child(2) > div.iekbcc0.ju367v6u.ju367v7f.ju367v7z.ju367v68.ju367v9o.ju367vc0.ju367vn.ju367vt.ju367vw.ju367vf3.ju367v11.ju367v1c.ju367v8i > div > div.iekbcc0.ju367v4.ju367va.ju367v1k > div {
+        display: none;
+    }
+}
