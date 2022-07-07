@@ -55,86 +55,77 @@ const SToken = () => {
         }
     }
 
-    if (!isConnected) {
-        let conf = getNetworkConf(currentNetwork)!
+    let conf = getNetworkConf(currentNetwork)!
 
-        console.log("conf: \n" + conf.tokAddress!)
-        // console.log("Bandz: \n" + tokAddress)
+    console.log("conf: \n" + conf.tokAddress!)
+    // console.log("Bandz: \n" + tokAddress)
 
-        // metamask only (desktop and mobile)
-        async function addToken(): Promise<void> {
-            const tokenAddress = conf.tokAddress;
-            const tokenSymbol = 'SKD';
-            const tokenDecimals = 18;
-            const tokenImage = 'https://etherscan.io/images/svg/brands/ethereum-1.svg';
-            try {
-                const wasAdded = await window?.ethereum?.request({
-                    method: 'wallet_watchAsset',
-                    params: {
-                        type: 'ERC20',
-                        options: {
-                            address: tokenAddress,
-                            symbol: tokenSymbol,
-                            decimals: tokenDecimals,
-                            image: tokenImage,
-                        },
+    // metamask only (desktop and mobile)
+    async function addToken(): Promise<void> {
+        const tokenAddress = conf.tokAddress;
+        const tokenSymbol = 'SKD';
+        const tokenDecimals = 18;
+        const tokenImage = 'https://etherscan.io/images/svg/brands/ethereum-1.svg';
+        try {
+            const wasAdded = await window?.ethereum?.request({
+                method: 'wallet_watchAsset',
+                params: {
+                    type: 'ERC20',
+                    options: {
+                        address: tokenAddress,
+                        symbol: tokenSymbol,
+                        decimals: tokenDecimals,
+                        image: tokenImage,
                     },
-                });
-                if (wasAdded) {
-                    // noice    
-                } else {
-                    alert("what?")
-                }
-            } catch (error) {
-                if (error instanceof Error) {
-                    console.log(error)
-                    alert("Error: " + error)
-                } else {
-                    console.log("error")
-                }
+                },
+            });
+            if (wasAdded) {
+                // noice    
+            } else {
+                alert("what?")
+            }
+        } catch (error) {
+            if (error instanceof Error) {
+                console.log(error)
+                alert("Error: " + error)
+            } else {
+                console.log("error")
             }
         }
-
-        // token
-        const { data, isError, isLoading } = useToken({
-            address: conf.tokAddress,
-            suspense: true
-        })
-
-        return (
-<>
-            {isPending && <div className="details"><p>Fetching token…</p></div>}
-            {isError && <div className="details"><p>Error fetching token</p></div>}
-
-            {!isPending && 
-
-            <div className="details">
-
-            <p>
-                Chain ID: {chain?.id || "error"}<br /> 
-                Name: {chain?.name || "error"}<br /> 
-                Network: {chain?.network || "error"}<br /> 
-                Symbol: {data?.symbol || "error"}<br /> 
-                Supply: {data?.totalSupply.formatted || "error"}<br />
-                Address: <a href={conf.etherscanURL} target="_blank" rel="noreferrer nooopener"> {String(conf.tokAddress).substring(0, 3) + "..." + String(conf.tokAddress).substring(38)}</a>
-            </p>
-
-            <button onClick={addToken} className="button--primary fox">
-                ADD TO <Image src="/vectors/metamask.svg" height={20} width={20} alt="metamask" />
-            </button>
-
-            </div>
-            }
-</>
-        )
-
-    } else {
-        return (
-            <>
-                Not sure
-            </>
-        )
     }
+
+    // token
+    const { data, isError, isLoading } = useToken({
+        address: conf.tokAddress,
+        suspense: true
+    })
+
+    return (
+<>
+        {isPending && <div className="details"><p>Fetching token…</p></div>}
+        {isError && <div className="details"><p>Error fetching token</p></div>}
+
+        {!isPending && 
+
+        <div className="details">
+
+        <p>
+            Chain ID: {chain?.id || "error"}<br /> 
+            Name: {chain?.name || "error"}<br /> 
+            Network: {chain?.network || "error"}<br /> 
+            Symbol: {data?.symbol || "error"}<br /> 
+            Supply: {data?.totalSupply.formatted || "error"}<br />
+            Address: <a href={conf.etherscanURL} target="_blank" rel="noreferrer nooopener"> {String(conf.tokAddress).substring(0, 3) + "..." + String(conf.tokAddress).substring(38)}</a>
+        </p>
+
+        <button onClick={addToken} className="button--primary fox">
+            ADD TO <Image src="/vectors/metamask.svg" height={20} width={20} alt="metamask" />
+        </button>
+
+        </div>
+        }
+</>
+    )
 };
 
 export default SToken;
