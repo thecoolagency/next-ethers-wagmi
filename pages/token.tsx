@@ -52,7 +52,7 @@ const Token: NextPage = () => {
                     </div>
                 }
 
-                {!isConnected && 
+                {isDisconnected && 
                     <div className="page-content center">
                         <h6>Connect your wallet to access this page.</h6>
                     </div>

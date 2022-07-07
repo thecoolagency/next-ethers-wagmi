@@ -1,8 +1,10 @@
+import { useState, useEffect, startTransition, useTransition } from 'react';
 import { useBalance, useAccount, useNetwork } from 'wagmi'
 
 export default function TokenBalance() {
 
     const { address, isConnected, isDisconnected, status } = useAccount();
+    const [ isPending, startTransition ] = useTransition();
 
     const { chain } = useNetwork();
 
@@ -38,15 +40,26 @@ export default function TokenBalance() {
 
     let toInt = parseInt(data?.formatted!);
 
-    if (isLoading) return <div>Fetching balance…</div>
-    if (isError) return <div>Error fetching balance</div>
-
     return (
-        <>  
-            <br />
-            <div className="center">
-                balance: {Math.trunc(toInt)} {data?.symbol}
-            </div>
+        <>
+            {isPending && <div className="details"><p>Fetching token…</p></div>}
+
+            {!isPending && 
+                <>
+                {isLoading && (
+                    <div>Fetching balance…</div>)
+                }
+
+                {isError && (
+                    <div>Error fetching balance</div>)
+                }
+
+                <div className="center">
+                    <br />
+                    balance: {Math.trunc(toInt)} {data?.symbol}
+                </div>
+                </>
+            }
         </>
     )
 }
