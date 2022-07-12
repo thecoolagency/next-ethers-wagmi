@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useTransition, Suspense, lazy } from 'react'
+import React, { useState, useEffect, startTransition, Suspense, lazy } from 'react'
 import Image from 'next/image';
 import { ethers, utils } from 'ethers'
 import { useContractWrite, useWaitForTransaction, useSigner, useAccount, useNetwork } from 'wagmi';
@@ -63,8 +63,8 @@ export default function TokenTransfer(): JSX.Element {
 
     console.log("conf: \n" + conf.tokAddress!)
 
-    const cbLink = "cbwallet://dapp?url=" + window.location.href;
-    const mmLink = "https://metamask.app.link/dapp/" + window.location.href;
+    // const cbLink = "cbwallet://dapp?url=" + window.location.href;
+    // const mmLink = "https://metamask.app.link/dapp/" + window.location.href;
 
     const [amount, setAmount] = useState('');
     const [finalAmount, setFinalAmount] = useState('0');
@@ -182,8 +182,9 @@ export default function TokenTransfer(): JSX.Element {
                 </div>
 
                 
+                {startTransition(() => {
                 {loadingState === 0 ? (
-                    startTransition(() => {
+
                     transferStatus === 0 ? (
                         txError === null ? (
                             <div className="empty"></div>
@@ -193,6 +194,7 @@ export default function TokenTransfer(): JSX.Element {
                     ) : (
                         <div className="empty"></div>
                     )
+
                 ) : (
                     <div className="results animated fadeIn">
                         <div className="details animated fadeInUp">
@@ -201,7 +203,7 @@ export default function TokenTransfer(): JSX.Element {
                         </div>
                     </div>
                 )}
-                }}
+                })}
             
                 {isConnected ? (
 

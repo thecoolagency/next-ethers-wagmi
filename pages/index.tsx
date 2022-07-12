@@ -11,11 +11,11 @@ const Home: NextPage = () => {
     const { isConnected, isDisconnected } = useAccount();
 
     useEffect(() => {
-            isConnected;
+        isConnected;
     },[isConnected])
 
     useEffect(() => {
-            isDisconnected;
+        isDisconnected;
     },[isDisconnected])
 
     return (
