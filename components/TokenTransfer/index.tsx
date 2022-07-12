@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense, lazy } from 'react'
 import Image from 'next/image';
 import { ethers, utils } from 'ethers'
 import { useContractWrite, useWaitForTransaction, useSigner, useAccount, useNetwork } from 'wagmi';

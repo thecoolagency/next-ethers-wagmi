@@ -1,4 +1,4 @@
-import { useState, useEffect, startTransition, useTransition } from 'react';
+import { useTransition } from 'react';
 import { useBalance, useAccount, useNetwork } from 'wagmi'
 
 export default function TokenBalance() {

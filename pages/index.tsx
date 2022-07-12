@@ -1,10 +1,22 @@
+import { useTransition, useEffect } from 'react';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import Head from "../components/Head";
 import Footer from "../components/Footer";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from 'wagmi'
 
 const Home: NextPage = () => {
+
+    const { isConnected, isDisconnected } = useAccount();
+
+    useEffect(() => {
+            isConnected;
+    },[isConnected])
+
+    useEffect(() => {
+            isDisconnected;
+    },[isDisconnected])
 
     return (
 
@@ -32,12 +44,20 @@ const Home: NextPage = () => {
                     <div className="grid">
 
                         <div className="card">
+
+                        {isConnected ?
+                            <>
                             <Link href="/token">
                                 <h2>SkidCoin &rarr;</h2>
                             </Link>
+                            
                             <Link href="/token">
                                 <p>Learn about SkidCoin.</p>
                             </Link>
+                            </>
+                        :
+                            <div><br /><ConnectButton /></div>
+                        }
                         </div>
 
                         <a href="https://opensea.io/" className="card" target="_blank" rel="noreferrer noopener">

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { useNetwork, useAccount } from 'wagmi'
+import { useAccount } from 'wagmi'
 import Head from "../components/Head";
 import Footer from "../components/Footer";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -22,7 +22,7 @@ const TokenTransfer = dynamic(() => import("../components/TokenTransfer"), {
 
 const Token: NextPage = () => {
 
-    const { address: accountAddress, isConnected, isDisconnected, status: userStatus } = useAccount();
+    const { isConnected, isDisconnected } = useAccount();
 
     return (
 
@@ -43,20 +43,16 @@ const Token: NextPage = () => {
                     <Link href="/">SkidCoin</Link>
                 </h1>
 
-                {isConnected && 
-                    <div className="page-content">
-                        <Chain />
-                        <SToken />
-                        <TokenBalance />
-                        <TokenTransfer />
-                    </div>
-                }
+                <div className="page-content">
+                    <Chain />
+                    <SToken />
+                    <TokenBalance />
+                    <TokenTransfer />
+                </div>
 
-                {isDisconnected && 
-                    <div className="page-content center">
-                        <h6>Connect your wallet to access this page.</h6>
-                    </div>
-                }
+                {/*<div className="page-content center">
+                    <h6>Connect your wallet to access this page.</h6>
+                </div>*/}
 
                 <div className="navigation center">
                     <Link href="/">
