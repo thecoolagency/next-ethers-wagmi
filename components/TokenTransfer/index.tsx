@@ -1,11 +1,10 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react'
+import React, { useState, useEffect, useTransition, Suspense, lazy } from 'react'
 import Image from 'next/image';
 import { ethers, utils } from 'ethers'
 import { useContractWrite, useWaitForTransaction, useSigner, useAccount, useNetwork } from 'wagmi';
 import TokenFactory from "../../contracts/SkidCoin.json";
 import Loader from '../../public/vectors/loader.svg';
 import Etherscan from '../../public/vectors/etherscan.svg';
-// import ethereum_address from 'ethereum-address';
 var ethereum_address = require('ethereum-address');
 
 export default function TokenTransfer(): JSX.Element {
@@ -97,19 +96,19 @@ export default function TokenTransfer(): JSX.Element {
         functionName: 'transfer',
         args: [address, utils.parseEther(finalAmount)],
         onMutate({ args, overrides }) {
-          console.log('Mutate', { args, overrides })
+            console.log('Mutate', { args, overrides })
         },
         onSuccess(data) {
-          console.log('Success', data)
-          setButton("send tokens");
-          setTransferStatus(1)
-          setDisabled(false)
+            console.log('Success', data)
+            setButton("send tokens");
+            setTransferStatus(1)
+            setDisabled(false)
         },
         onError(error) {
-          console.log('Error', error)
-          setButton("try again?");
-          setTransferStatus(1)
-          setDisabled(false)
+            console.log('Error', error)
+            setButton("try again?");
+            setTransferStatus(1)
+            setDisabled(false)
 
         }
     });
@@ -129,15 +128,6 @@ export default function TokenTransfer(): JSX.Element {
             } else {
                 console.log("error")
             }
-            // await console.log("Error: " + error.message);
-            // if (error.code === '4001') {
-            //     setDisabled(false)
-            //     setLoadingState(1)
-            // } else {
-            //     setDisabled(false)
-            //     setLoadingState(1)
-            // }
-            // console.log(error.message + error.code)
         }
     }
 
@@ -191,7 +181,9 @@ export default function TokenTransfer(): JSX.Element {
                     </div>
                 </div>
 
+                
                 {loadingState === 0 ? (
+                    startTransition(() => {
                     transferStatus === 0 ? (
                         txError === null ? (
                             <div className="empty"></div>
@@ -209,6 +201,7 @@ export default function TokenTransfer(): JSX.Element {
                         </div>
                     </div>
                 )}
+                }}
             
                 {isConnected ? (
 
